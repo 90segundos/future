@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+  <button id="playBtn" style="background: none; border: none;"><img src="./assets/play.gif" alt="Tamago Image"
+      style="width: 400px; height: auto; image-rendering: pixelated;">
+  </button>
+  <img id="guy" src="./assets/babas.gif" alt="Tamago GIF"
+    style="width: 400px; height: auto; image-rendering: pixelated; display: none;">
+  <audio loop>
+    <source src="./assets/sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audio = document.querySelector('audio');
+      audio.playbackRate = .9; // Set playback rate to 0.5x
+      const playBtn = document.getElementById('playBtn');
+      const guy = document.getElementById('guy');
+      let isPlaying = false;
+      playBtn.addEventListener('click', () => {
+        audio.play();
+        guy.style.display = 'block';
+        playBtn.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+
+</html>
