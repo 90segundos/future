@@ -8,26 +8,37 @@
 </head>
 
 <body style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
-  <button id="playBtn" style="background: none; border: none;"><img src="./assets/play.gif" alt="Tamago Image"
-      style="width: 400px; height: auto; image-rendering: pixelated;">
+  <button id="playBtn" class="playCtl" style="background: none; border: none;"><img src="./assets/play.gif"
+      alt="Tamago Image" style="width: 400px; height: auto; image-rendering: pixelated;">
   </button>
-  <img id="guy" src="./assets/babas.gif" alt="Tamago GIF"
-    style="width: 400px; height: auto; image-rendering: pixelated; display: none;">
+  <button id="guy" class="playCtl" style="background: none; border: none; display: none;">
+    <img src="./assets/babas.gif" alt="Tamago GIF" style="width: 400px; height: auto; image-rendering: pixelated;">
+  </button>
   <audio loop>
-    <source src="./assets/sound.mp3" type="audio/mpeg">
+    <source src="./assets/sound.mp3#t=00:01:17.5" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const audio = document.querySelector('audio');
-      audio.playbackRate = .9; // Set playback rate to 0.5x
-      const playBtn = document.getElementById('playBtn');
-      const guy = document.getElementById('guy');
       let isPlaying = false;
-      playBtn.addEventListener('click', () => {
-        audio.play();
-        guy.style.display = 'block';
-        playBtn.style.display = 'none';
+      const guy = document.getElementById('guy');
+      const playBtn = document.getElementById('playBtn');
+      const audio = document.querySelector('audio');
+      const playCtls = document.querySelectorAll('.playCtl');
+      audio.playbackRate = .9; // Set playback rate to 0.5x
+      playCtls.forEach(btn => {
+        btn.addEventListener('click', () => {
+          isPlaying = !isPlaying;
+          if (!isPlaying) {
+            guy.style.display = 'none';
+            playBtn.style.display = 'block';
+            audio.pause();
+          } else {
+            guy.style.display = 'block';
+            playBtn.style.display = 'none';
+            audio.play();
+          }
+        });
       });
     });
   </script>
